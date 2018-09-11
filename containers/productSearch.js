@@ -9,11 +9,7 @@ import { SearchBar } from 'react-native-elements';
 import ProductListItem from "../components/ProductListItems";
 let URI = "http://10.110.60.121:4000";
 
-class ProductSearch extends Component {
-    // componentDidMount() {
-    //     // this.props.actions.getProducts();
-    //     // this.props.actions.getSearchProduct(this.props.products, "");
-    // }
+class ProductSearch extends Component {   
 
     _keyExtractor(p, i){
         return `${p.id}`;
@@ -31,38 +27,24 @@ class ProductSearch extends Component {
     );
 
     _onSearch = (searchProduct) => {            
-        
         let filterProduct = this.props.products.filter((fill) => fill.title.toLowerCase().indexOf(searchProduct.toLowerCase())> -1);
-
-        if( searchProduct.length == 0){        
-  
-            this.props.actions.getSearchProductEmpty(filterProduct, searchProduct);     
-    
-        }else {
         this.props.actions.getSearchProduct(filterProduct, searchProduct);
-        }    
     }
-
    
 
     render() {
         // debugger;
-        const { isLoading, filteredProducts} = this.props;
-      if(typeof(filteredProducts) != undefined){
-        // console.log(typeof(filteredProducts) != undefined)
-        // 
-        console.log(filteredProducts )
+        const { isLoading, filteredProducts} = this.props;              
         filteredProducts.sort(function(low, high){
             return low.rating - high.rating;
         }) 
-    }
+    
         return (
             <View style={{flex:1,backgroundColor:'gray'}}>
                 <SearchBar
                 lightTheme
-                onChangeText={this._onSearch.bind(this)}
-                onClearText={this._onSearch.bind(this)}
-                placeholder='Search Products' />
+                onChangeText={this._onSearch.bind(this)}                
+                placeholder='Type here to search the products' />
                 {isLoading ? (
                     <View style={{flex:1, justifyContent: "center"}}>
                         <ActivityIndicator size="large" color="gray"/>
@@ -81,7 +63,7 @@ class ProductSearch extends Component {
                         justifyContent: 'center',
                         alignItems: 'center'
                       }}>
-                        <Text style={{ justifyContent: 'center', alignItems: 'center' }}>No Products found  </Text>
+                        <Text style={{ justifyContent: 'center', alignItems: 'center' }}>No products shown as of now, please search for products. </Text>
                         
                       </View>
                   )

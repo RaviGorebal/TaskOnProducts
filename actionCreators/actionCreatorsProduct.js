@@ -1,6 +1,6 @@
 import {GET_PRODUCTS,
   GET_PRODUCTS_SUCCESS,
-  GET_PRODUCTS_FAILURE,SEARCH_PRODUCT_EMPTY,
+  GET_PRODUCTS_FAILURE,
   SEARCH_PRODUCT } from "../actionTypes/actionTypesProduct";
 
 export function getProducts(page, limit) {
@@ -31,12 +31,4 @@ return {
   products,
   itemName
 };
-}
-export function getSearchProductEmpty(products, itemName) {
-  return {
-    type: SEARCH_PRODUCT_EMPTY,
-    products,
-    itemName
-  };
-
 }

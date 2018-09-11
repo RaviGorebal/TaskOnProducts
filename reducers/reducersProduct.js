@@ -1,6 +1,6 @@
 import { GET_PRODUCTS,
   GET_PRODUCTS_SUCCESS,
-  GET_PRODUCTS_FAILURE,SEARCH_PRODUCT_EMPTY,
+  GET_PRODUCTS_FAILURE,
   SEARCH_PRODUCT } from "../actionTypes/actionTypesProduct";
 
 export default function productReducer(
@@ -21,10 +21,9 @@ switch (action.type) {
      filteredProducts:
      action.itemName.length > 0
        ? action.products
-       : action.products
+       : action.products = []
      };
-
- case SEARCH_PRODUCT_EMPTY :  return {products : []} ;
+ 
  default:
      return prevState;
 }

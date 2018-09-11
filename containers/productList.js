@@ -5,7 +5,7 @@ import * as productActionCreators from "../actionCreators/actionCreatorsProduct"
 import { connect } from "react-redux";
 import { FlatList } from "react-native-gesture-handler";
 import ProductListItem from "../components/ProductListItems";
-// let URI = "http://10.110.60.121:4000";
+let URI = "http://10.110.60.121:4000";
 
 class ProductList extends Component {
     componentDidMount() {
@@ -21,15 +21,14 @@ class ProductList extends Component {
         {...this.props}
         id={item.id}
         title={item.title}
-        image={item.image ? `${"http://10.110.60.121:4000"}/images/${item.image}` : null}
+        image={item.image ? `${ URI }/images/${item.image}` : null}
         rating={item.rating}
         price={item.price}
     />
     );
 
     render() {
-        const { products, isLoading} = this.props;
-        // products.map(p => {console.log(p.price)});
+        const { products, isLoading} = this.props;      
         products.sort(function(low, high){
             return high.price - low.price;
         }) 
